@@ -39,8 +39,8 @@ router.post('/login',async (req,res)=>{
     user.refreshToken = refreshToken;
     await user.save();
 
-    res.clearCookie('jwt');
-    res.cookie('jwt',user.refreshToken,{httpOnly:true,maxAge:1000*3600*24, domain : "localhost", path:'/'});
+    
+    res.cookie('refresh',user.refreshToken,{httpOnly:true,maxAge:1000*3600*24});
 
     res.json({accessToken:accessToken,username:user.username,id:user._id,points:user.points,premium:user.isPremium,role:user.role});
 

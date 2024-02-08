@@ -14,10 +14,10 @@ const jwt = require('jsonwebtoken');
 
 router.get('/',async(req,res)=>{
     const cookies = req.cookies;
-    if(!cookies?.jwt) return res.json('no cookies');
-    console.log(req.cookies.jwt);
+    if(!cookies?.refresh) return res.json('no cookies');
 
-    const user = await User.findOne({refreshToken:cookies.jwt});
+
+    const user = await User.findOne({refreshToken:cookies.refresh});
 
     if (!user) return res.json({reponse:'no user with this refresh Token (cookies ghaltin)',cookies:cookies});
 
